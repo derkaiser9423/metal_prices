@@ -1,0 +1,56 @@
+name: Collect Metals Data
+
+on:
+  schedule:
+    # Run once per day at 9:00 AM UTC (3 requests per day to stay under 100/month limit)
+    - cron: '0 9 * * *'
+  workflow_dispatch:  # Allow manual triggers
+  push:
+    branches:
+      - main
+    paths:
+      - 'collect_metals_data.py'
+      - '.github/workflows/collect_data.yml'
+
+jobs:
+  collect-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+    
+    - name: Install dependencies
+      run: |
+        pip install requests
+    
+    - name: Run data collection
+      env:
+        GOLDAPI_KEY: ${{ secrets.GOLDAPI_KEY }}
+      run: |
+        python collect_metals_data.py
+    
+    - name: Commit and push if changes
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add metals_data.db
+        git diff --staged --quiet || git commit -m "Update metals data - $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Upload database artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: metals-database
+        path: metals_data.db
+        retention-days: 30

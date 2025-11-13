@@ -1,6 +1,6 @@
 # 📊 Precious Metals Price Tracker
 
-[![Collect Metals Data](https://github.com/derkaiser9423/metal_price/actions/workflows/collect_data.yml/badge.svg)](https://github.com/Yderkaiser9423/metal_price/actions/workflows/collect_data.yml)
+[![Collect Metals Data](https://github.com/derkaiser9423/metal_price/actions/workflows/collect_data.yml/badge.svg)](https://github.com/derkaiser9423/metal_price/actions/workflows/collect_data.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Data Source](https://img.shields.io/badge/Data-GoldAPI.io-gold)](https://www.goldapi.io/)

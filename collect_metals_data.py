@@ -6,7 +6,7 @@ import os
 import sys
 
 # Configuration
-API_KEY = os.environ.get('GOLDAPI_KEY', 'goldapi-7lvv50smhqzls5q-io')
+API_KEY = os.environ["GOLDAPI_KEY"]  # Require the env var explicitly
 DB_PATH = 'metals_data.db'
 METALS = ['XAU', 'XAG', 'XPT']  # Gold, Silver, Platinum
 CURRENCY = 'USD'

@@ -25,7 +25,7 @@ The SQLite database stores comprehensive price information:
 |--------|------|-------------|
 | `timestamp` | TEXT | ISO timestamp of the price |
 | `metal_symbol` | TEXT | Metal code (XAU/XAG/XPT) |
-| `currency` | TEXT | Currency code (USD) |
+| `currency` | TEXT | Currency code (AUD) |
 | `price` | REAL | Current price per Troy Ounce |
 | `open_price` | REAL | Opening price |
 | `high_price` | REAL | Daily high |
